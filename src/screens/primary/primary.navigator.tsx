@@ -8,7 +8,7 @@ import { PrimaryCreditScreen } from './primary-credit';
 import { PrimaryExerciseScheduleScreen } from './primary-exercise-schedule';
 import { PrimarySearchExerciseScreen } from './primary-search-exercise';
 
-import { Icon } from '@/atoms';
+import { Icon, getTextStyle } from '@/atoms';
 import { palette } from '@/utils';
 
 export type PrimaryNavigatorParamLists = {
@@ -29,17 +29,21 @@ export const PrimaryNavigator = () => {
   const navigation = useNavigation<PrimaryNavigatorProps>();
   const route = useRoute<PrimaryNavigatorRouteProps>();
 
+  const labelTextStyle = getTextStyle('600', '14');
+
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarLabelStyle: {},
+        tabBarLabelStyle: {
+          ...labelTextStyle,
+        },
         tabBarStyle: {
-          height: 76,
+          height: 80,
           paddingBottom: 12,
           paddingTop: 12,
-          backgroundColor: palette['white'],
+          backgroundColor: '#F9F9F9',
         },
-        tabBarActiveTintColor: palette['primary'],
+        tabBarActiveTintColor: palette['gray-900'],
         tabBarInactiveTintColor: palette['gray-400'],
         headerShown: false,
       }}
@@ -60,7 +64,7 @@ export const PrimaryNavigator = () => {
         options={{
           tabBarLabel: '운동일정',
           tabBarIcon: ({ color }) => {
-            return <Icon color={color} size={24} name="schedule" />;
+            return <Icon color={color} size={24} name="calendar-today" />;
           },
         }}
       />
