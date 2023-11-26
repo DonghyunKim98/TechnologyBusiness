@@ -26,17 +26,17 @@ export const getTextStyle = (
     case '400':
       return {
         ...textStyle,
-        fontFamily: 'Roboto-light',
+        fontFamily: 'Roboto-Regular',
       };
     case '500':
       return {
         ...textStyle,
-        fontFamily: 'Roboto-Regular',
+        fontFamily: 'Roboto-Medium',
       };
     case '600':
       return {
         ...textStyle,
-        fontFamily: 'Roboto-Medium',
+        fontFamily: 'Roboto-Bold',
       };
 
     case '700':
@@ -89,6 +89,9 @@ export const getColorStyle = (color: fontColorType): TextStyle => {
 
     case 'disable-button':
       return { color: palette['disable-button'] };
+
+    case 'secondary':
+      return { color: palette['secondary'] };
 
     default:
       return { color: palette['gray-600'] };

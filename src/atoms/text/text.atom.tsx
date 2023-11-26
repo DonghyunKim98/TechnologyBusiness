@@ -24,6 +24,7 @@ export type fontColorType =
   | 'gray-500'
   | 'gray-400'
   | 'primary'
+  | 'secondary'
   | 'error'
   | 'white'
   | 'black'
