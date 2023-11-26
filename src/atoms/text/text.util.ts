@@ -26,22 +26,22 @@ export const getTextStyle = (
     case '400':
       return {
         ...textStyle,
-        fontFamily: 'Pretendard-Light',
+        fontFamily: 'Roboto-Light',
       };
     case '500':
       return {
         ...textStyle,
-        fontFamily: 'Pretendard-Medium',
+        fontFamily: 'Roboto-Medium',
       };
     case '600':
       return {
         ...textStyle,
-        fontFamily: 'Pretendard-Bold',
+        fontFamily: 'Roboto-Bold',
       };
     default:
       return {
         ...textStyle,
-        fontFamily: 'Pretendard-Medium',
+        fontFamily: 'Roboto-Medium',
       };
   }
 };

@@ -13,6 +13,7 @@
       "MMKV",
       "mobily",
       "naver",
+      "Roboto",
       "wonka"
     ],
     "i18n-ally.localesPaths": "./src/providers/i18n/resources",
