@@ -1,8 +1,8 @@
 import { ComponentProps } from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-type IconProps = ComponentProps<typeof MaterialCommunityIcons>;
+type IconProps = ComponentProps<typeof MaterialIcons>;
 
 export const Icon = ({ ...props }: IconProps) => {
-  return <MaterialCommunityIcons {...props} />;
+  return <MaterialIcons {...props} />;
 };
