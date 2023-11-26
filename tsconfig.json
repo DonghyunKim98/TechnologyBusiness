@@ -10,9 +10,12 @@
       "@/providers": ["./src/providers"],
       "@/providers/*": ["./src/providers/*"],
       "@/hooks": ["./src/hooks"],
-      "@/hooks/*": ["./src/hooks/*"]
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/assets": ["./src/assets"],
+      "@/assets/*": ["./src/assets/*"]
     },
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["./src/types"],
   },
   "extends": "@tsconfig/react-native/tsconfig.json"
 }
