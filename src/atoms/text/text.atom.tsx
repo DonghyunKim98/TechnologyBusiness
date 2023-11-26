@@ -3,8 +3,17 @@ import { Text as RNText, TextProps as RNTextProps } from 'react-native';
 import { getColorStyle, getTextAlignStyle, getTextStyle } from './text.util';
 
 export type textAligns = 'auto' | 'left' | 'right' | 'center' | 'justify';
-export type fontWeightType = '600' | '500' | '400';
-export type fontSizeType = '8' | '12' | '14' | '16' | '18' | '20' | '24' | '28';
+export type fontWeightType = '700' | '600' | '500' | '400';
+export type fontSizeType =
+  | '8'
+  | '12'
+  | '14'
+  | '16'
+  | '18'
+  | '20'
+  | '24'
+  | '28'
+  | '32';
 export type fontColorType =
   | 'gray-1000'
   | 'gray-900'
