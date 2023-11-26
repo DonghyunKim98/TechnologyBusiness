@@ -27,7 +27,8 @@ export type fontColorType =
   | 'error'
   | 'white'
   | 'black'
-  | 'green';
+  | 'green'
+  | 'disable-button';
 
 type TextProps = RNTextProps & {
   fontWeight: fontWeightType;

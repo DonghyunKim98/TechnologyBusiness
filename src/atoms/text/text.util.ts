@@ -87,6 +87,9 @@ export const getColorStyle = (color: fontColorType): TextStyle => {
     case 'black':
       return { color: palette['black'] };
 
+    case 'disable-button':
+      return { color: palette['disable-button'] };
+
     default:
       return { color: palette['gray-600'] };
   }

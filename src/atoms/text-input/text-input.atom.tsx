@@ -87,7 +87,7 @@ export const TextInput = ({
   props = props as ErrorProps;
 
   return (
-    <Stack space={8} style={{}}>
+    <Stack space={4} style={{}}>
       {renderTextInput()}
       {error === true && (
         <Text color="error" fontWeight="400" fontSize="16">

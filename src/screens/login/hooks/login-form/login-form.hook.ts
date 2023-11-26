@@ -12,7 +12,7 @@ const loginSchemaFormSchema: yup.ObjectSchema<LoginForm> = yup.object().shape({
     .string()
     .matches(
       /^[a-zA-Z0-9]{5,19}$/,
-      '아이디는 영문자 및 숫자만 사용 가능합니다.',
+      '아이디는 영문자 및 숫자를 이용하여 5자 이상 19자 이내로 입력해주세요.',
     )
     .required('아이디를 입력해주세요')
     .min(5, '5자 이상으로 입력해주세요')
@@ -21,7 +21,7 @@ const loginSchemaFormSchema: yup.ObjectSchema<LoginForm> = yup.object().shape({
     .string()
     .matches(
       /^[a-zA-Z0-9]{8,19}$/,
-      '비밀번호는 영문자 및 숫자만 사용 가능합니다.',
+      '비밀번호는 영문자 및 숫자를 이용하여 8자 이상 19자 이내로 입력해주세요.',
     )
     .required('비밀번호를 입력해주세요')
     .min(8, '8자 이상으로 입력해주세요')
