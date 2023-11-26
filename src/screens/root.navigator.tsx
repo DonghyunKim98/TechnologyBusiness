@@ -1,12 +1,17 @@
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { LandingScreen } from './landing';
 import { LoginScreen } from './login';
+import { PrimaryNavigator, PrimaryNavigatorParamLists } from './primary';
 
 export type RootStackParamList = {
   LandingScreen: undefined;
   LoginScreen: undefined;
+  PrimaryStack: NavigatorScreenParams<PrimaryNavigatorParamLists>;
 };
 
 type RootNavigatorProps = {};
@@ -21,6 +26,7 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="LandingScreen" component={LandingScreen} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="PrimaryStack" component={PrimaryNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
 import { useBackHandler } from '@react-native-community/hooks';
 import isUndefined from 'lodash/isUndefined';
-import { memo } from 'react';
+import { ReactNode, memo } from 'react';
 
 import { Icon, Text } from '@/atoms';
 import { palette } from '@/utils';
@@ -9,7 +9,7 @@ type ModalHeaderProps = {
   left:
     | {
         type: 'string';
-        title: string;
+        title: string | ReactNode;
       }
     | { type: 'icon' };
   onPressExit?: () => void;

@@ -1,8 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { TouchableOpacity } from 'react-native';
 
 import { LoginForm } from '../../hooks';
+import { LoginScreenNavigationProps } from '../../login.screen';
 
 import { Text } from '@/atoms';
 import { palette } from '@/utils';
@@ -10,14 +12,30 @@ import { palette } from '@/utils';
 type LoginFooterModuleProps = {};
 
 export const LoginFooterModule = memo<LoginFooterModuleProps>(() => {
+  const navigation = useNavigation<LoginScreenNavigationProps>();
+
   const { formState, handleSubmit } = useFormContext<LoginForm>();
   const { isDirty, isValid } = formState;
 
   const isLoginPossible = isDirty && isValid;
 
+  const handlePressLoginButton = () => {
+    handleSubmit(() => {
+      navigation.reset({
+        index: 1,
+        routes: [
+          {
+            name: 'PrimaryStack',
+            params: { screen: 'PrimarySearchExerciseScreen' },
+          },
+        ],
+      });
+    })();
+  };
+
   return (
     <TouchableOpacity
-      onPress={() => {}}
+      onPress={handlePressLoginButton}
       style={{
         justifyContent: 'center',
         alignItems: 'center',
