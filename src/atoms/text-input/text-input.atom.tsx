@@ -53,7 +53,7 @@ export const TextInput = ({
           roundness: 8,
           colors: {
             ...DefaultTheme.colors,
-            primary: palette['primary'],
+            primary: palette['gray-900'],
             outline: palette['gray-900'],
             onSurface: palette['gray-900'],
             onSurfaceVariant: palette['gray-900'],

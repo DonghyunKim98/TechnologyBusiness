@@ -7,6 +7,8 @@ import { LandingContentsModule, LandingFooterModule } from './modules';
 
 import { BasicLayout } from '@/layouts';
 
+type LandingScreenProps = {};
+
 export type LandingScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   'LandingScreen'
@@ -17,7 +19,7 @@ export type LandingScreenNavigationRouteProps = RouteProp<
   'LandingScreen'
 >;
 
-export const LandingScreen = () => {
+export const LandingScreen = ({}: LandingScreenProps) => {
   const navigation = useNavigation<LandingScreenNavigationProps>();
 
   return (
