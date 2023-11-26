@@ -19,7 +19,7 @@ export const getTextStyle = (
   const textStyle = {
     fontSize: parseInt(fontSize),
     lineHeight: parseInt(fontSize) * 1.5,
-    letterSpacing: -parseInt(fontSize) * 0.04,
+    letterSpacing: parseInt(fontSize) * 0.04,
   };
 
   switch (fontWeight) {
