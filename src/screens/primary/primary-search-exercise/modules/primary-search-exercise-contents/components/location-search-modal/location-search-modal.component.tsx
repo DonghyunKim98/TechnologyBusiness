@@ -8,6 +8,9 @@ import { palette } from '@/utils';
 
 type LocationSearchModalProps = {
   isVisibleModal: boolean;
+  updateCurrentLocation: (
+    newLocation: '수원/화성' | '건대입구/성수/왕십리',
+  ) => void;
   closeModal: () => void;
 };
 
@@ -53,7 +56,7 @@ const mapLocation = {
 };
 
 export const LocationSearchModal = memo<LocationSearchModalProps>(
-  ({ isVisibleModal, closeModal }) => {
+  ({ isVisibleModal, closeModal, updateCurrentLocation }) => {
     const [currentBigLocation, setCurrentBigLocation] = useState<
       '서울' | '경기'
     >('서울');
@@ -140,7 +143,8 @@ export const LocationSearchModal = memo<LocationSearchModalProps>(
                 {mapLocation[currentBigLocation].map(v => {
                   const handlePressSmallLocation = () => {
                     if (v === '건대입구/성수/왕십리' || v === '수원/화성') {
-                      //   setCurrentBigLocation(v);
+                      updateCurrentLocation(v);
+                      closeModal();
                       return;
                     }
                     Toast.show({

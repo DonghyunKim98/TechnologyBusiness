@@ -10,19 +10,46 @@ import { palette } from '@/utils';
 
 type PrimarySearchExerciseContentsProps = {};
 
-const DUMMY_EXERCISES = [
-  { iconName: 'fitness-center', title: '피트니스', num: 6 },
-  { iconName: 'self-improvement', title: '요가', num: 3 },
-  { iconName: 'pool', title: '수영', num: 3 },
-  { iconName: 'surfing', title: '서핑', num: 1 },
-  { iconName: 'snowboarding', title: '스키 & 보드', num: 0 },
-  { iconName: 'sports-tennis', title: '테니스', num: 4 },
-];
+const DUMMY_EXERCISE = {
+  '수원/화성': [
+    { iconName: 'fitness-center', title: '피트니스', num: 4 },
+    { iconName: 'self-improvement', title: '요가', num: 2 },
+    { iconName: 'pool', title: '수영', num: 1 },
+    { iconName: 'surfing', title: '서핑', num: 2 },
+    { iconName: 'snowboarding', title: '스키 & 보드', num: 3 },
+    { iconName: 'sports-tennis', title: '테니스', num: 2 },
+  ],
+  '건대입구/성수/왕십리': [
+    { iconName: 'fitness-center', title: '피트니스', num: 3 },
+    { iconName: 'self-improvement', title: '요가', num: 3 },
+    { iconName: 'pool', title: '수영', num: 3 },
+    { iconName: 'surfing', title: '서핑', num: 1 },
+    { iconName: 'snowboarding', title: '스키 & 보드', num: 1 },
+    { iconName: 'sports-tennis', title: '테니스', num: 4 },
+  ],
+  'not-selected': [
+    { iconName: 'fitness-center', title: '피트니스', num: 0 },
+    { iconName: 'self-improvement', title: '요가', num: 0 },
+    { iconName: 'pool', title: '수영', num: 0 },
+    { iconName: 'surfing', title: '서핑', num: 0 },
+    { iconName: 'snowboarding', title: '스키 & 보드', num: 0 },
+    { iconName: 'sports-tennis', title: '테니스', num: 0 },
+  ],
+};
 
 export const PrimarySearchExerciseContents =
   memo<PrimarySearchExerciseContentsProps>(() => {
     const [isLocationSearchModalVisible, setIsSearchModalVisible] =
       useState(false);
+    const [currentLocation, setCurrentLocation] = useState<
+      '수원/화성' | '건대입구/성수/왕십리' | null
+    >(null);
+
+    const updateCurrentLocation = (
+      newLocation: '수원/화성' | '건대입구/성수/왕십리',
+    ) => {
+      setCurrentLocation(newLocation);
+    };
 
     const handlePressLocationSearch = () => {
       setIsSearchModalVisible(true);
@@ -34,6 +61,7 @@ export const PrimarySearchExerciseContents =
     return (
       <>
         <LocationSearchModal
+          updateCurrentLocation={updateCurrentLocation}
           isVisibleModal={isLocationSearchModalVisible}
           closeModal={closeModal}
         />
@@ -55,8 +83,11 @@ export const PrimarySearchExerciseContents =
                 }}>
                 <Columns space={8}>
                   <Column width="fluid">
-                    <Text fontWeight="500" fontSize="14" color="gray-400">
-                      어디서 운동을 즐기실 계획인가요?
+                    <Text
+                      fontWeight="500"
+                      fontSize="14"
+                      color={currentLocation ? 'gray-900' : 'gray-400'}>
+                      {currentLocation ?? '어디서 운동을 즐기실 계획인가요?'}
                     </Text>
                   </Column>
                   <Column width="content">
@@ -72,7 +103,7 @@ export const PrimarySearchExerciseContents =
                   종목 선택
                 </Text>
               </Stack>
-              {DUMMY_EXERCISES.map(v => {
+              {DUMMY_EXERCISE[currentLocation ?? 'not-selected'].map(v => {
                 return (
                   <TouchableOpacity
                     key={v.title}
@@ -99,13 +130,22 @@ export const PrimarySearchExerciseContents =
                           <Box
                             alignX="center"
                             alignY="center"
-                            style={{
-                              backgroundColor: palette['primary'],
-                              borderRadius: 8,
-                              width: 24,
-                              height: 24,
-                            }}>
-                            <Text fontWeight="500" fontSize="14" color="white">
+                            style={[
+                              {
+                                borderRadius: 8,
+                                width: 24,
+                                height: 24,
+                              },
+                              currentLocation !== null && {
+                                backgroundColor: palette['primary'],
+                              },
+                            ]}>
+                            <Text
+                              fontWeight="500"
+                              fontSize="14"
+                              color={
+                                currentLocation === null ? 'gray-400' : 'white'
+                              }>
                               {v.num}
                             </Text>
                           </Box>
