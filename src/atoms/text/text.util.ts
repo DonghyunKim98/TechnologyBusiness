@@ -93,6 +93,12 @@ export const getColorStyle = (color: fontColorType): TextStyle => {
     case 'secondary':
       return { color: palette['secondary'] };
 
+    case 'blue-500':
+      return { color: palette['blue-500'] };
+
+    case 'red-500':
+      return { color: palette['red-500'] };
+
     default:
       return { color: palette['gray-600'] };
   }

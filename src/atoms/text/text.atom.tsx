@@ -23,6 +23,8 @@ export type fontColorType =
   | 'gray-600'
   | 'gray-500'
   | 'gray-400'
+  | 'blue-500'
+  | 'red-500'
   | 'primary'
   | 'secondary'
   | 'error'
