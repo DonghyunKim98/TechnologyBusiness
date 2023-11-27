@@ -1,6 +1,9 @@
 import { Stack, Columns, Column, Box } from '@mobily/stacks';
+import { useNavigation } from '@react-navigation/native';
 import { memo, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+
+import { PrimarySearchExerciseScreenNavigatorProp } from '../../primary-search-exercise.screen';
 
 import { LocationSearchModal } from './components';
 
@@ -39,6 +42,8 @@ const DUMMY_EXERCISE = {
 
 export const PrimarySearchExerciseContents =
   memo<PrimarySearchExerciseContentsProps>(() => {
+    const navigation =
+      useNavigation<PrimarySearchExerciseScreenNavigatorProp>();
     const [isLocationSearchModalVisible, setIsSearchModalVisible] =
       useState(false);
     const [currentLocation, setCurrentLocation] = useState<
@@ -104,9 +109,22 @@ export const PrimarySearchExerciseContents =
                 </Text>
               </Stack>
               {DUMMY_EXERCISE[currentLocation ?? 'not-selected'].map(v => {
+                const handlePressItem = () => {
+                  if (!currentLocation) {
+                    return;
+                  }
+
+                  navigation.navigate('FacilitySelectScreen', {
+                    //@ts-ignore
+                    iconName: v.iconName,
+                    location: currentLocation,
+                  });
+                };
+
                 return (
                   <TouchableOpacity
                     key={v.title}
+                    onPress={handlePressItem}
                     style={{
                       backgroundColor: palette['gray-200'],
                       padding: 12,
@@ -132,11 +150,11 @@ export const PrimarySearchExerciseContents =
                             alignY="center"
                             style={[
                               {
-                                borderRadius: 8,
                                 width: 24,
                                 height: 24,
                               },
                               currentLocation !== null && {
+                                borderRadius: 8,
                                 backgroundColor: palette['primary'],
                               },
                             ]}>

@@ -17,6 +17,11 @@ type ModalHeaderProps = {
         type: 'icon-string';
         iconName: string;
         title: string;
+      }
+    | {
+        type: 'back-icon-string';
+        iconName: string;
+        title: string;
       };
   onPressExit?: () => void;
 };
@@ -30,12 +35,34 @@ export const ModalHeader = memo<ModalHeaderProps>(({ left, onPressExit }) => {
 
     return false;
   });
+  const handlePressBackIcon = () => {
+    onPressExit?.();
+  };
 
   if (left.type === 'string') {
     return (
       <Text fontWeight="700" fontSize="22" color="gray-900">
         {left.title}
       </Text>
+    );
+  }
+
+  if (left.type === 'back-icon-string') {
+    return (
+      <Stack space={32}>
+        <Icon
+          name="arrow-back-ios"
+          onPress={handlePressBackIcon}
+          size={24}
+          color={palette['black']}
+        />
+        <Stack horizontal space={4} align="center">
+          <Icon name={left.iconName} size={26} color={palette['gray-900']} />
+          <Text fontWeight="700" fontSize="22" color="gray-900">
+            {left.title}
+          </Text>
+        </Stack>
+      </Stack>
     );
   }
 
@@ -49,10 +76,6 @@ export const ModalHeader = memo<ModalHeaderProps>(({ left, onPressExit }) => {
       </Stack>
     );
   }
-
-  const handlePressBackIcon = () => {
-    onPressExit?.();
-  };
 
   return (
     <Icon
