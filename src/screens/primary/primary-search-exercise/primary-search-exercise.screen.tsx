@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
+
+import {
+  PrimaryNavigatorParamLists,
+  PrimaryNavigatorProps,
+} from '../primary.navigator';
 
 import {
   PrimarySearchExerciseContents,
@@ -7,13 +13,27 @@ import {
 
 import { BasicLayout } from '@/layouts';
 
-export const PrimarySearchExerciseScreen = () => {
-  const [isBannerErased, setIsBannerErased] = useState(false);
+export type PrimarySearchExerciseScreenNavigatorProp = CompositeNavigationProp<
+  PrimaryNavigatorProps,
+  BottomTabNavigationProp<
+    PrimaryNavigatorParamLists,
+    'PrimarySearchExerciseScreen'
+  >
+>;
 
-  return (
-    <BasicLayout>
-      <PrimarySearchExerciseHeaderModule />
-      <PrimarySearchExerciseContents />
-    </BasicLayout>
-  );
-};
+export type PrimarySearchExerciseScreenRouteProp = RouteProp<
+  PrimaryNavigatorParamLists,
+  'PrimarySearchExerciseScreen'
+>;
+
+type PrimarySearchExerciseScreenProps = {};
+
+export const PrimarySearchExerciseScreen =
+  ({}: PrimarySearchExerciseScreenProps) => {
+    return (
+      <BasicLayout>
+        <PrimarySearchExerciseHeaderModule />
+        <PrimarySearchExerciseContents />
+      </BasicLayout>
+    );
+  };

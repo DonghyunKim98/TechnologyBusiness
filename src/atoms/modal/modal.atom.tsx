@@ -1,12 +1,22 @@
+import { useWindowDimensions } from '@mobily/stacks';
 import { PropsWithChildren } from 'react';
-import { Dimensions, useWindowDimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import RNModal from 'react-native-modal';
 
 import { palette } from '@/utils';
 
-export type ModalProps = PropsWithChildren<{ isVisible: boolean }>;
+type ModalProps = PropsWithChildren<{
+  isVisible: boolean;
+  onBackdropPress?: () => void;
+  isBottomSheet?: boolean;
+}>;
 
-export const Modal = ({ isVisible, children }: ModalProps) => {
+export const Modal = ({
+  children,
+  isVisible,
+  onBackdropPress = () => {},
+  isBottomSheet = false,
+}: ModalProps) => {
   const { width } = useWindowDimensions();
 
   const maxDeviceHeight = Math.max(
@@ -17,15 +27,25 @@ export const Modal = ({ isVisible, children }: ModalProps) => {
   return (
     <RNModal
       isVisible={isVisible}
-      animationIn="fadeIn"
-      animationOut="fadeOut"
+      animationIn={isBottomSheet ? 'slideInUp' : 'fadeIn'}
+      animationOut={isBottomSheet ? 'slideOutDown' : 'fadeOut'}
+      backdropColor={palette['modal']}
+      backdropOpacity={1}
+      style={[
+        {
+          margin: 0,
+          paddingHorizontal: isBottomSheet ? 0 : 20,
+        },
+        isBottomSheet && {
+          justifyContent: 'flex-end',
+        },
+      ]}
       useNativeDriver
       statusBarTranslucent
-      backdropColor={palette['white-a60']}
       deviceHeight={maxDeviceHeight}
       deviceWidth={width}
-      backdropOpacity={0.8}
-      style={{ margin: 0 }}>
+      onBackdropPress={onBackdropPress}
+      avoidKeyboard>
       {children}
     </RNModal>
   );

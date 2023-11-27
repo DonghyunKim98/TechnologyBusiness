@@ -7,6 +7,7 @@ export const palette = {
   black: '#000000',
   primary: '#34C1C9',
   secondary: '#322096',
+  modal: 'rgba(0,0,0,0.6)',
   'disabled-bg': '#E0E0E0',
   'disable-button': 'rgba(158, 158, 158, 0.62)',
   'gray-100': '#F6F8FA',
