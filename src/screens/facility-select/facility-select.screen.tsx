@@ -3,9 +3,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParamList } from '../root.navigator';
 
-import { mapIconNameByTitle } from './facility-select.const';
+import { FacilitySelectHeaderModule } from './modules';
 
-import { ModalHeader } from '@/atoms';
 import { BasicLayout } from '@/layouts';
 
 type FacilitySelectScreenProps = {};
@@ -28,16 +27,7 @@ export const FacilitySelectScreen = ({}: FacilitySelectScreenProps) => {
 
   return (
     <BasicLayout>
-      <ModalHeader
-        left={{
-          type: 'back-icon-string',
-          title: mapIconNameByTitle[iconName],
-          iconName,
-        }}
-        onPressExit={() => {
-          navigation.goBack();
-        }}
-      />
+      <FacilitySelectHeaderModule />
     </BasicLayout>
   );
 };
