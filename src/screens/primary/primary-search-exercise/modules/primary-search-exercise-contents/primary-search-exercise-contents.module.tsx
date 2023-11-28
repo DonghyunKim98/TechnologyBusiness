@@ -15,7 +15,7 @@ type PrimarySearchExerciseContentsProps = {};
 
 const DUMMY_EXERCISE = {
   '수원/화성': [
-    { iconName: 'fitness-center', title: '피트니스', num: 4 },
+    { iconName: 'fitness-center', title: '피트니스', num: 3 },
     { iconName: 'self-improvement', title: '요가', num: 2 },
     { iconName: 'pool', title: '수영', num: 1 },
     { iconName: 'surfing', title: '서핑', num: 2 },
@@ -24,11 +24,11 @@ const DUMMY_EXERCISE = {
   ],
   '건대입구/성수/왕십리': [
     { iconName: 'fitness-center', title: '피트니스', num: 3 },
-    { iconName: 'self-improvement', title: '요가', num: 3 },
-    { iconName: 'pool', title: '수영', num: 3 },
+    { iconName: 'self-improvement', title: '요가', num: 2 },
+    { iconName: 'pool', title: '수영', num: 2 },
     { iconName: 'surfing', title: '서핑', num: 1 },
     { iconName: 'snowboarding', title: '스키 & 보드', num: 1 },
-    { iconName: 'sports-tennis', title: '테니스', num: 4 },
+    { iconName: 'sports-tennis', title: '테니스', num: 1 },
   ],
   'not-selected': [
     { iconName: 'fitness-center', title: '피트니스', num: 0 },

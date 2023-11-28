@@ -1,8 +1,11 @@
 import { Box, Column, Columns, Stack } from '@mobily/stacks';
+import { useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 import { FlatList, Image, TouchableOpacity } from 'react-native';
 
-import { Able_GYM_IMG } from '@/assets';
+import { FACILITY_DATA } from '../../facility-select.const';
+import { FacilitySelectScreenNavigationRouteProps } from '../../facility-select.screen';
+
 import { Icon, Text } from '@/atoms';
 import { palette } from '@/utils';
 
@@ -10,16 +13,15 @@ type FacilitySelectContentModuleProps = {};
 
 export const FacilitySelectContentModule =
   memo<FacilitySelectContentModuleProps>(() => {
+    const {
+      params: { iconName, location },
+    } = useRoute<FacilitySelectScreenNavigationRouteProps>();
+
+    const data = FACILITY_DATA[location][iconName];
+
     return (
       <FlatList
-        data={[
-          {
-            title: '에이블짐 한양대점',
-            rating: '4.4',
-            specificLocation: '성동구 마조로 30 지하1층',
-            img: Able_GYM_IMG,
-          },
-        ]}
+        data={data}
         renderItem={({ item }) => {
           const { title, rating, specificLocation, img } = item;
 
@@ -74,6 +76,7 @@ export const FacilitySelectContentModule =
           );
         }}
         ListHeaderComponent={<Box style={{ height: 32 }} />}
+        ItemSeparatorComponent={() => <Box style={{ height: 12 }} />}
         ListEmptyComponent={<Box style={{ height: 12 }} />}
         ListFooterComponent={<Box style={{ height: 40 }} />}
       />
