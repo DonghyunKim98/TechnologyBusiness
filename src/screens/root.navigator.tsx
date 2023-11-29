@@ -8,6 +8,7 @@ import { FacilitySelectScreen } from './facility-select';
 import { LandingScreen } from './landing';
 import { LoginScreen } from './login';
 import { PrimaryNavigator, PrimaryNavigatorParamLists } from './primary';
+import { TeacherSelectScreen } from './teacher-select';
 import { WebViewScreen } from './web-view';
 
 export type RootStackParamList = {
@@ -24,6 +25,10 @@ export type RootStackParamList = {
       | 'snowboarding'
       | 'sports-tennis';
     location: '수원/화성' | '건대입구/성수/왕십리';
+  };
+  TeacherSelectScreen: {
+    title: string;
+    specificLocation: string;
   };
 };
 
@@ -44,6 +49,10 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
         <Stack.Screen
           name="FacilitySelectScreen"
           component={FacilitySelectScreen}
+        />
+        <Stack.Screen
+          name="TeacherSelectScreen"
+          component={TeacherSelectScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
