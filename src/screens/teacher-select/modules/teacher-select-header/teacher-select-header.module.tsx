@@ -31,7 +31,7 @@ export const TeacherSelectHeaderModule = memo<TeacherSelectHeaderModuleProps>(
               name="place"
               size={26}
               color={palette['gray-900']}
-              style={{ marginTop: 3 }}
+              style={{ marginTop: 5 }}
             />
           </Column>
           <Column>

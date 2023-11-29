@@ -1,6 +1,9 @@
 import { Stack, Box, Columns, Column } from '@mobily/stacks';
+import { useNavigation } from '@react-navigation/native';
 import { memo } from 'react';
 import { TouchableOpacity } from 'react-native';
+
+import { FacilitySelectScreenNavigationProps } from '../../../../facility-select.screen';
 
 import { Icon, Modal, Text } from '@/atoms';
 import { palette } from '@/utils';
@@ -14,6 +17,16 @@ type FacilityModalProps = {
 
 export const FacilityModal = memo<FacilityModalProps>(
   ({ isVisibleModal, closeModal, title, specificLocation }) => {
+    const navigation = useNavigation<FacilitySelectScreenNavigationProps>();
+
+    const handlePressClassReserve = () => {
+      closeModal();
+      navigation.navigate('TeacherSelectScreen', {
+        title,
+        specificLocation,
+      });
+    };
+
     return (
       <Modal
         isBottomSheet
@@ -129,6 +142,7 @@ export const FacilityModal = memo<FacilityModalProps>(
             </Stack>
             <Stack space={8}>
               <TouchableOpacity
+                onPress={handlePressClassReserve}
                 style={{
                   borderRadius: 8,
                   backgroundColor: palette['primary'],

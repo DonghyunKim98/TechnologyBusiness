@@ -3,7 +3,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParamList } from '../root.navigator';
 
-import { TeacherSelectHeaderModule } from './modules';
+import {
+  TeacherSelectContentModule,
+  TeacherSelectHeaderModule,
+} from './modules';
 
 import { BasicLayout } from '@/layouts';
 
@@ -23,6 +26,7 @@ export const TeacherSelectScreen = ({}: TeacherSelectScreenProps) => {
   return (
     <BasicLayout>
       <TeacherSelectHeaderModule />
+      <TeacherSelectContentModule />
     </BasicLayout>
   );
 };
