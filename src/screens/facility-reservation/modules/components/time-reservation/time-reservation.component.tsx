@@ -1,5 +1,5 @@
 import sample from 'lodash/sample';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { Text } from '@/atoms';
@@ -12,7 +12,7 @@ type TimeReservationComponentProps = {
 
 export const TimeReservationComponent = memo<TimeReservationComponentProps>(
   ({ time, onPress }) => {
-    const isAvailableByRandom = sample([true, false]);
+    const isAvailableByRandom = useMemo(() => sample([true, false]), []);
 
     return (
       <TouchableOpacity

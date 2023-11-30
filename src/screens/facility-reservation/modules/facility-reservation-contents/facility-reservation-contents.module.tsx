@@ -199,9 +199,14 @@ export const FacilityReservationContentsModule =
         )}
         <Dialog
           dialogVisible={dialogVisible}
-          title={`${title} ${dayjs(selectedDate).format('MM월 DD일')} ${
-            selectedTime.time
-          } 예약하시겠습니까? 1크레딧이 차감됩니다`}
+          content={
+            isFirstConfirmButtonPressed
+              ? '예약이 완료되었습니다.\n일정을 확인해보세요'
+              : `${title} ${dayjs(selectedDate).format('MM월 DD일')} ${
+                  selectedTime.time
+                }\n예약하시겠습니까? 1크레딧이 차감됩니다`
+          }
+          title={isFirstConfirmButtonPressed ? '예약 완료' : '시설 예약'}
           cancelButton={
             isFirstConfirmButtonPressed
               ? undefined
