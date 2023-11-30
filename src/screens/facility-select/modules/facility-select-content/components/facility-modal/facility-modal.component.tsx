@@ -1,9 +1,12 @@
 import { Stack, Box, Columns, Column } from '@mobily/stacks';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { FacilitySelectScreenNavigationProps } from '../../../../facility-select.screen';
+import {
+  FacilitySelectScreenNavigationProps,
+  FacilitySelectScreenNavigationRouteProps,
+} from '../../../../facility-select.screen';
 
 import { Icon, Modal, Text } from '@/atoms';
 import { palette } from '@/utils';
@@ -18,12 +21,16 @@ type FacilityModalProps = {
 export const FacilityModal = memo<FacilityModalProps>(
   ({ isVisibleModal, closeModal, title, specificLocation }) => {
     const navigation = useNavigation<FacilitySelectScreenNavigationProps>();
+    const {
+      params: { iconName },
+    } = useRoute<FacilitySelectScreenNavigationRouteProps>();
 
     const handlePressFacilityReserve = () => {
       closeModal();
       navigation.navigate('FacilityReservationScreen', {
         title,
         specificLocation,
+        iconName,
       });
     };
 

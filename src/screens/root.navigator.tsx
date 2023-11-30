@@ -35,6 +35,13 @@ export type RootStackParamList = {
   FacilityReservationScreen: {
     title: string;
     specificLocation: string;
+    iconName:
+      | 'fitness-center'
+      | 'self-improvement'
+      | 'pool'
+      | 'surfing'
+      | 'snowboarding'
+      | 'sports-tennis';
   };
   TeacherReservationScreen: {
     name: string;

@@ -3,6 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import dayjs from 'dayjs';
 import { memo, useState } from 'react';
 import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';
+import { useSetRecoilState } from 'recoil';
 import { useDidUpdate } from 'rooks';
 
 import {
@@ -17,6 +18,7 @@ import {
 } from './facility-reservation-contents.const';
 
 import { Dialog, SingleButtonProps, Text } from '@/atoms';
+import { $facilityReservationState } from '@/state';
 import { palette } from '@/utils';
 
 type FacilityReservationContentsModuleProps = {};
@@ -59,7 +61,7 @@ LocaleConfig.defaultLocale = 'kr';
 export const FacilityReservationContentsModule =
   memo<FacilityReservationContentsModuleProps>(() => {
     const {
-      params: { title },
+      params: { title, iconName },
     } = useRoute<FacilityReservationScreenNavigationRouteProps>();
     const navigation =
       useNavigation<FacilityReservationScreenNavigationProps>();
@@ -72,6 +74,8 @@ export const FacilityReservationContentsModule =
     });
     const [isFirstConfirmButtonPressed, setIsFirstConfirmButtonPressed] =
       useState(false);
+
+    const setFacilityReservation = useSetRecoilState($facilityReservationState);
 
     const handlePressDay = (day: DateData) => {
       setSelectedDate(day.dateString);
@@ -90,6 +94,14 @@ export const FacilityReservationContentsModule =
     };
 
     const handlePressFirstConfirmButton = () => {
+      setFacilityReservation(prev => [
+        ...prev,
+        {
+          title,
+          iconName,
+          date: dayjs(`${selectedDate} ${selectedTime.time}`),
+        },
+      ]);
       setIsFirstConfirmButtonPressed(true);
     };
 
