@@ -28,6 +28,7 @@ module.exports = {
           '@/providers': './src/providers',
           '@/hooks': './src/hooks',
           '@/assets': './src/assets',
+          '@/state': './src/state',
         },
       },
     ],

@@ -1,11 +1,13 @@
 import { Stack, Columns, Column } from '@mobily/stacks';
 import { memo, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useRecoilState } from 'recoil';
 import { useDidUpdate } from 'rooks';
 
 import { CREDITS } from './primary-credit-content.const';
 
 import { Dialog, Icon, Text } from '@/atoms';
+import { $creditState } from '@/state';
 import { palette } from '@/utils';
 
 type PrimaryCreditContentsModuleProps = {};
@@ -18,6 +20,8 @@ export const PrimaryCreditContentsModule =
       price: '0',
     });
 
+    const [{ credit }, setCreditState] = useRecoilState($creditState);
+
     const closeModal = () => {
       setDialogVisible(false);
     };
@@ -26,6 +30,7 @@ export const PrimaryCreditContentsModule =
       closeModal();
     };
     const handlePressOkayButton = () => {
+      setCreditState(prev => ({ credit: prev.credit + selectedCredit.credit }));
       closeModal();
     };
 
@@ -50,7 +55,7 @@ export const PrimaryCreditContentsModule =
             </Text>
             <Stack horizontal space={4} align="center">
               <Text fontWeight="700" fontSize="16" color="gray-900">
-                0
+                {credit}
               </Text>
               <Icon
                 name="monetization-on"
