@@ -3,6 +3,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParamList } from '../root.navigator';
 
+import { TeacherReservationHeader } from './modules';
+
 import { BasicLayout, ScrollView } from '@/layouts';
 
 type TeacherReservationScreenProps = {};
@@ -20,7 +22,9 @@ export type TeacherReservationScreenNavigationRouteProps = RouteProp<
 export const TeacherReservationScreen = ({}: TeacherReservationScreenProps) => {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <BasicLayout></BasicLayout>
+      <BasicLayout>
+        <TeacherReservationHeader />
+      </BasicLayout>
     </ScrollView>
   );
 };

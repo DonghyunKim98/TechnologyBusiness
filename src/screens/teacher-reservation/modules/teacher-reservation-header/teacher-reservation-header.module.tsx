@@ -1,18 +1,23 @@
 import { Box, Stack } from '@mobily/stacks';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 
-import { FacilityReservationScreenNavigationProps } from '../../facility-reservation.screen';
+import {
+  TeacherReservationScreenNavigationProps,
+  TeacherReservationScreenNavigationRouteProps,
+} from '../../teacher-reservation.screen';
 
 import { Icon, ModalHeader, Text } from '@/atoms';
 import { palette } from '@/utils';
 
-type FacilityReservationHeaderModuleProps = {};
+export type TeacherReservationHeaderModule = {};
 
-export const FacilityReservationHeaderModule =
-  memo<FacilityReservationHeaderModuleProps>(() => {
-    const navigation =
-      useNavigation<FacilityReservationScreenNavigationProps>();
+export const TeacherReservationHeader = memo<TeacherReservationHeaderModule>(
+  () => {
+    const {
+      params: { name },
+    } = useRoute<TeacherReservationScreenNavigationRouteProps>();
+    const navigation = useNavigation<TeacherReservationScreenNavigationProps>();
 
     const handlePressExit = () => {
       navigation.goBack();
@@ -23,9 +28,9 @@ export const FacilityReservationHeaderModule =
         <ModalHeader left={{ type: 'icon' }} onPressExit={handlePressExit} />
         <Box direction="row" alignX="between" alignY="center">
           <Stack horizontal space={4} align="center">
-            <Icon name="edit-calendar" size={26} color={palette['gray-900']} />
+            <Icon name="person-outline" size={26} color={palette['gray-900']} />
             <Text fontWeight="700" fontSize="22" color="gray-900">
-              시설 예약
+              {`강사 ${name}`}
             </Text>
           </Stack>
           <Stack horizontal space={8}>
@@ -46,4 +51,5 @@ export const FacilityReservationHeaderModule =
         </Box>
       </Stack>
     );
-  });
+  },
+);
