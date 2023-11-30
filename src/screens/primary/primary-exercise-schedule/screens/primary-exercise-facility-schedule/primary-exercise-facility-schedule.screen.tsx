@@ -1,19 +1,12 @@
 import { Box, Column, Columns, Stack } from '@mobily/stacks';
-import dayjs from 'dayjs';
 import { useState } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native';
+import { useRecoilState } from 'recoil';
 import { useDidUpdate } from 'rooks';
 
 import { Dialog, Icon, Text } from '@/atoms';
+import { $facilityReservationState } from '@/state';
 import { palette } from '@/utils';
-
-const DUMMY_DATA = [
-  {
-    title: '에이블짐 한양대점',
-    iconName: 'fitness-center',
-    date: dayjs('2023-11-01 10:00'),
-  },
-];
 
 export const PrimaryExerciseFacilityScheduleScreen = () => {
   const [dialogVisible, setDialogVisible] = useState(false);
@@ -34,17 +27,24 @@ export const PrimaryExerciseFacilityScheduleScreen = () => {
   };
 
   const handlePressConfirmButton = () => {
+    setFacilityReservation(prev =>
+      prev.slice(0, selectedData.id).concat(prev.slice(selectedData.id + 1)),
+    );
     closeDialog();
   };
+
+  const [facilityReservation, setFacilityReservation] = useRecoilState(
+    $facilityReservationState,
+  );
 
   return (
     <>
       <Dialog
         dialogVisible={dialogVisible}
         title="예약취소"
-        content={`${DUMMY_DATA[selectedData.id]?.title} ${DUMMY_DATA[
-          selectedData.id
-        ]?.date.format(
+        content={`${
+          facilityReservation[selectedData.id]?.title
+        } ${facilityReservation[selectedData.id]?.date.format(
           'MM월 DD일 HH:mm',
         )}\n예약 취소하시겠습니까? 1크레딧이 환불됩니다.`}
         cancelButton={{ label: '취소', onPress: handlePressCancelButton }}
@@ -58,7 +58,18 @@ export const PrimaryExerciseFacilityScheduleScreen = () => {
         }}
         ListHeaderComponent={() => <Box style={{ height: 32 }} />}
         ItemSeparatorComponent={() => <Box style={{ height: 20 }} />}
-        data={DUMMY_DATA}
+        data={facilityReservation}
+        ListEmptyComponent={() => (
+          <Box flex="fluid" alignX="center" alignY="center">
+            <Text
+              fontSize="16"
+              fontWeight="500"
+              color="gray-700"
+              textAlignment="center">
+              예약된 일정이 없습니다.
+            </Text>
+          </Box>
+        )}
         renderItem={({ item, index }) => {
           const handlePressChangeReservation = () => {};
 
