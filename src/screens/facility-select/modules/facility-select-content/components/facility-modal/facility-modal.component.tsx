@@ -19,6 +19,14 @@ export const FacilityModal = memo<FacilityModalProps>(
   ({ isVisibleModal, closeModal, title, specificLocation }) => {
     const navigation = useNavigation<FacilitySelectScreenNavigationProps>();
 
+    const handlePressFacilityReserve = () => {
+      closeModal();
+      navigation.navigate('FacilityReservationScreen', {
+        title,
+        specificLocation,
+      });
+    };
+
     const handlePressClassReserve = () => {
       closeModal();
       navigation.navigate('TeacherSelectScreen', {
@@ -172,6 +180,7 @@ export const FacilityModal = memo<FacilityModalProps>(
                 </Columns>
               </TouchableOpacity>
               <TouchableOpacity
+                onPress={handlePressFacilityReserve}
                 style={{
                   borderRadius: 8,
                   backgroundColor: palette['primary'],

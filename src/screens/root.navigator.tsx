@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { FacilityReservationScreen } from './facility-reservation';
 import { FacilitySelectScreen } from './facility-select';
 import { LandingScreen } from './landing';
 import { LoginScreen } from './login';
@@ -30,6 +31,10 @@ export type RootStackParamList = {
     title: string;
     specificLocation: string;
   };
+  FacilityReservationScreen: {
+    title: string;
+    specificLocation: string;
+  };
 };
 
 type RootNavigatorProps = {};
@@ -53,6 +58,10 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
         <Stack.Screen
           name="TeacherSelectScreen"
           component={TeacherSelectScreen}
+        />
+        <Stack.Screen
+          name="FacilityReservationScreen"
+          component={FacilityReservationScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
