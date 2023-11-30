@@ -15,6 +15,9 @@ export const PrimaryExerciseFacilityScheduleScreen = () => {
     pressed: 0,
   });
   const setCreditState = useSetRecoilState($creditState);
+  const [facilityReservation, setFacilityReservation] = useRecoilState(
+    $facilityReservationState,
+  );
 
   useDidUpdate(() => {
     setDialogVisible(true);
@@ -35,10 +38,6 @@ export const PrimaryExerciseFacilityScheduleScreen = () => {
     setCreditState(prev => ({ credit: prev.credit + 1 }));
     closeDialog();
   };
-
-  const [facilityReservation, setFacilityReservation] = useRecoilState(
-    $facilityReservationState,
-  );
 
   return (
     <>
