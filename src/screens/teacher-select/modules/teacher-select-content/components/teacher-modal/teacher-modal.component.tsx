@@ -24,6 +24,9 @@ export const TeacherModal = memo<TeacherModalProps>(
 
     const handlePressClassReserve = () => {
       closeModal();
+      navigation.navigate('TeacherReservationScreen', {
+        name,
+      });
     };
 
     return (
@@ -169,6 +172,7 @@ export const TeacherModal = memo<TeacherModalProps>(
               후기 더보기
             </Text>
             <TouchableOpacity
+              onPress={handlePressClassReserve}
               style={{
                 borderRadius: 8,
                 backgroundColor: palette['primary'],

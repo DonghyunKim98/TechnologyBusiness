@@ -9,6 +9,7 @@ import { FacilitySelectScreen } from './facility-select';
 import { LandingScreen } from './landing';
 import { LoginScreen } from './login';
 import { PrimaryNavigator, PrimaryNavigatorParamLists } from './primary';
+import { TeacherReservationScreen } from './teacher-reservation';
 import { TeacherSelectScreen } from './teacher-select';
 import { WebViewScreen } from './web-view';
 
@@ -34,6 +35,9 @@ export type RootStackParamList = {
   FacilityReservationScreen: {
     title: string;
     specificLocation: string;
+  };
+  TeacherReservationScreen: {
+    name: string;
   };
 };
 
@@ -62,6 +66,10 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
         <Stack.Screen
           name="FacilityReservationScreen"
           component={FacilityReservationScreen}
+        />
+        <Stack.Screen
+          name="TeacherReservationScreen"
+          component={TeacherReservationScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
