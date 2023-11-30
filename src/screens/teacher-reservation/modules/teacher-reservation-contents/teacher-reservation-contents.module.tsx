@@ -6,20 +6,17 @@ import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';
 import { useDidUpdate } from 'rooks';
 
 import {
-  FacilityReservationScreenNavigationProps,
-  FacilityReservationScreenNavigationRouteProps,
-} from '../../facility-reservation.screen';
-import { TimeReservationComponent } from '../components';
+  TeacherReservationScreenNavigationProps,
+  TeacherReservationScreenNavigationRouteProps,
+} from '../../teacher-reservation.screen';
 
-import {
-  AFTERNOON_TIMES,
-  MORNING_TIMES,
-} from './facility-reservation-contents.const';
+import { TeacherReservationComponent } from './components';
+import { AFTERNOON_TIMES, MORNING_TIMES } from './teacher-reservation.const';
 
 import { Dialog, SingleButtonProps, Text } from '@/atoms';
 import { palette } from '@/utils';
 
-type FacilityReservationContentsModuleProps = {};
+type TeacherReservationContentsModuleProps = {};
 
 LocaleConfig.locales['kr'] = {
   monthNames: [
@@ -56,13 +53,12 @@ LocaleConfig.locales['kr'] = {
 };
 LocaleConfig.defaultLocale = 'kr';
 
-export const FacilityReservationContentsModule =
-  memo<FacilityReservationContentsModuleProps>(() => {
+export const TeacherReservationContentsModule =
+  memo<TeacherReservationContentsModuleProps>(() => {
     const {
-      params: { title },
-    } = useRoute<FacilityReservationScreenNavigationRouteProps>();
-    const navigation =
-      useNavigation<FacilityReservationScreenNavigationProps>();
+      params: { name },
+    } = useRoute<TeacherReservationScreenNavigationRouteProps>();
+    const navigation = useNavigation<TeacherReservationScreenNavigationProps>();
 
     const [selectedDate, setSelectedDate] = useState<null | string>(null);
     const [dialogVisible, setDialogVisible] = useState(false);
@@ -160,7 +156,7 @@ export const FacilityReservationContentsModule =
                 };
 
                 return (
-                  <TimeReservationComponent
+                  <TeacherReservationComponent
                     key={time}
                     time={time}
                     onPress={handlePressTimeReservation}
@@ -189,7 +185,7 @@ export const FacilityReservationContentsModule =
                 };
 
                 return (
-                  <TimeReservationComponent
+                  <TeacherReservationComponent
                     key={time}
                     time={time}
                     onPress={handlePressTimeReservation}
@@ -204,9 +200,9 @@ export const FacilityReservationContentsModule =
           content={
             isFirstConfirmButtonPressed
               ? '예약이 완료되었습니다.\n일정을 확인해보세요'
-              : `${title} ${dayjs(selectedDate).format('MM월 DD일')} ${
+              : `${name} ${dayjs(selectedDate).format('MM월 DD일')} ${
                   selectedTime.time
-                }\n예약하시겠습니까? 1크레딧이 차감됩니다`
+                }\n예약하시겠습니까? 2크레딧이 차감됩니다`
           }
           title={isFirstConfirmButtonPressed ? '예약 완료' : '시설 예약'}
           cancelButton={

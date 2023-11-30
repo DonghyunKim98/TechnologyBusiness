@@ -10,10 +10,10 @@ import {
 import { Icon, ModalHeader, Text } from '@/atoms';
 import { palette } from '@/utils';
 
-export type TeacherReservationHeaderModule = {};
+export type TeacherReservationHeaderModuleProps = {};
 
-export const TeacherReservationHeader = memo<TeacherReservationHeaderModule>(
-  () => {
+export const TeacherReservationHeaderModule =
+  memo<TeacherReservationHeaderModuleProps>(() => {
     const {
       params: { name },
     } = useRoute<TeacherReservationScreenNavigationRouteProps>();
@@ -51,5 +51,4 @@ export const TeacherReservationHeader = memo<TeacherReservationHeaderModule>(
         </Box>
       </Stack>
     );
-  },
-);
+  });
