@@ -3,6 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import dayjs from 'dayjs';
 import { memo, useState } from 'react';
 import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';
+import { useSetRecoilState } from 'recoil';
 import { useDidUpdate } from 'rooks';
 
 import {
@@ -14,6 +15,7 @@ import { TeacherReservationComponent } from './components';
 import { AFTERNOON_TIMES, MORNING_TIMES } from './teacher-reservation.const';
 
 import { Dialog, SingleButtonProps, Text } from '@/atoms';
+import { $creditState, $teacherReservationState } from '@/state';
 import { palette } from '@/utils';
 
 type TeacherReservationContentsModuleProps = {};
@@ -56,7 +58,7 @@ LocaleConfig.defaultLocale = 'kr';
 export const TeacherReservationContentsModule =
   memo<TeacherReservationContentsModuleProps>(() => {
     const {
-      params: { name },
+      params: { name, facility },
     } = useRoute<TeacherReservationScreenNavigationRouteProps>();
     const navigation = useNavigation<TeacherReservationScreenNavigationProps>();
 
@@ -68,6 +70,9 @@ export const TeacherReservationContentsModule =
     });
     const [isFirstConfirmButtonPressed, setIsFirstConfirmButtonPressed] =
       useState(false);
+
+    const setTeacherReservation = useSetRecoilState($teacherReservationState);
+    const setCreditState = useSetRecoilState($creditState);
 
     const handlePressDay = (day: DateData) => {
       setSelectedDate(day.dateString);
@@ -86,6 +91,15 @@ export const TeacherReservationContentsModule =
     };
 
     const handlePressFirstConfirmButton = () => {
+      setTeacherReservation(prev => [
+        ...prev,
+        {
+          name,
+          facility,
+          date: dayjs(`${selectedDate} ${selectedTime.time.split(' ')[1]}`),
+        },
+      ]);
+      setCreditState(prev => ({ credit: prev.credit - 2 }));
       setIsFirstConfirmButtonPressed(true);
     };
 

@@ -45,6 +45,7 @@ export type RootStackParamList = {
   };
   TeacherReservationScreen: {
     name: string;
+    facility: string;
   };
 };
 

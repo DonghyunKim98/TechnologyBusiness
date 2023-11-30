@@ -1,9 +1,12 @@
 import { Stack, Box, Columns, Column } from '@mobily/stacks';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { TeacherSelectScreenNavigationProps } from '../../../../teacher-select.screen';
+import {
+  TeacherSelectScreenNavigationProps,
+  TeacherSelectScreenNavigationRouteProps,
+} from '../../../../teacher-select.screen';
 
 import { TEACHER_REVIEW_DATA } from './teacher-modal.const';
 
@@ -20,12 +23,16 @@ type TeacherModalProps = {
 
 export const TeacherModal = memo<TeacherModalProps>(
   ({ isVisibleModal, closeModal, name, star, minNumOfReserve }) => {
+    const {
+      params: { title },
+    } = useRoute<TeacherSelectScreenNavigationRouteProps>();
     const navigation = useNavigation<TeacherSelectScreenNavigationProps>();
 
     const handlePressClassReserve = () => {
       closeModal();
       navigation.navigate('TeacherReservationScreen', {
         name,
+        facility: title,
       });
     };
 

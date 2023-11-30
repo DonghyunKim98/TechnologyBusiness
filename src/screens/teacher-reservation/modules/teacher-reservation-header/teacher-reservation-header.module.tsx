@@ -1,6 +1,7 @@
 import { Box, Stack } from '@mobily/stacks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { memo } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import {
   TeacherReservationScreenNavigationProps,
@@ -8,6 +9,7 @@ import {
 } from '../../teacher-reservation.screen';
 
 import { Icon, ModalHeader, Text } from '@/atoms';
+import { $creditState } from '@/state';
 import { palette } from '@/utils';
 
 export type TeacherReservationHeaderModuleProps = {};
@@ -22,6 +24,8 @@ export const TeacherReservationHeaderModule =
     const handlePressExit = () => {
       navigation.goBack();
     };
+
+    const { credit } = useRecoilValue($creditState);
 
     return (
       <Stack space={32}>
@@ -39,7 +43,7 @@ export const TeacherReservationHeaderModule =
             </Text>
             <Box direction="row" alignY="center">
               <Text fontWeight="400" fontSize="14" color="secondary">
-                35
+                {credit}
               </Text>
               <Icon
                 name="monetization-on"
