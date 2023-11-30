@@ -18,7 +18,7 @@ import {
 } from './facility-reservation-contents.const';
 
 import { Dialog, SingleButtonProps, Text } from '@/atoms';
-import { $facilityReservationState } from '@/state';
+import { $creditState, $facilityReservationState } from '@/state';
 import { palette } from '@/utils';
 
 type FacilityReservationContentsModuleProps = {};
@@ -76,6 +76,7 @@ export const FacilityReservationContentsModule =
       useState(false);
 
     const setFacilityReservation = useSetRecoilState($facilityReservationState);
+    const setCreditState = useSetRecoilState($creditState);
 
     const handlePressDay = (day: DateData) => {
       setSelectedDate(day.dateString);
@@ -99,9 +100,10 @@ export const FacilityReservationContentsModule =
         {
           title,
           iconName,
-          date: dayjs(`${selectedDate} ${selectedTime.time}`),
+          date: dayjs(`${selectedDate} ${selectedTime.time.split(' ')[1]}`),
         },
       ]);
+      setCreditState(prev => ({ credit: prev.credit - 1 }));
       setIsFirstConfirmButtonPressed(true);
     };
 

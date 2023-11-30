@@ -1,11 +1,11 @@
 import { Box, Column, Columns, Stack } from '@mobily/stacks';
 import { useState } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useDidUpdate } from 'rooks';
 
 import { Dialog, Icon, Text } from '@/atoms';
-import { $facilityReservationState } from '@/state';
+import { $creditState, $facilityReservationState } from '@/state';
 import { palette } from '@/utils';
 
 export const PrimaryExerciseFacilityScheduleScreen = () => {
@@ -14,6 +14,8 @@ export const PrimaryExerciseFacilityScheduleScreen = () => {
     id: -1,
     pressed: 0,
   });
+  const setCreditState = useSetRecoilState($creditState);
+
   useDidUpdate(() => {
     setDialogVisible(true);
   }, [selectedData]);
@@ -30,6 +32,7 @@ export const PrimaryExerciseFacilityScheduleScreen = () => {
     setFacilityReservation(prev =>
       prev.slice(0, selectedData.id).concat(prev.slice(selectedData.id + 1)),
     );
+    setCreditState(prev => ({ credit: prev.credit + 1 }));
     closeDialog();
   };
 
