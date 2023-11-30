@@ -4,6 +4,8 @@ import { memo } from 'react';
 
 import { RootStackParamList } from '../root.navigator';
 
+import { FacilityReservationHeaderModule } from './modules';
+
 import { BasicLayout } from '@/layouts';
 
 type FacilityReservationScreenProps = {};
@@ -20,6 +22,10 @@ export type FacilityReservationScreenNavigationRouteProps = RouteProp<
 
 export const FacilityReservationScreen = memo<FacilityReservationScreenProps>(
   () => {
-    return <BasicLayout></BasicLayout>;
+    return (
+      <BasicLayout>
+        <FacilityReservationHeaderModule />
+      </BasicLayout>
+    );
   },
 );
