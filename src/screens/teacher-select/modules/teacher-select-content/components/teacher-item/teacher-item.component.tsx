@@ -2,6 +2,8 @@ import { Box, Column, Columns, Stack } from '@mobily/stacks';
 import { memo, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
+import { TeacherModal } from '../teacher-modal';
+
 import { Icon, Text } from '@/atoms';
 import { palette } from '@/utils';
 
@@ -11,16 +13,28 @@ type TeacherItemProps = {
   minNumOfReserve: number;
 };
 
-export const TeacherItem = memo<TeacherItemProps>(
-  ({ name, star, minNumOfReserve }) => {
-    const [isVisibleModal, setIsVisibleModal] = useState(false);
+export const TeacherItem = memo<TeacherItemProps>(props => {
+  const { name, star } = props;
 
-    const handlePressItem = () => {
-      setIsVisibleModal(true);
-    };
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
 
-    return (
+  const handlePressItem = () => {
+    setIsVisibleModal(true);
+  };
+
+  const closeModal = () => {
+    setIsVisibleModal(false);
+  };
+
+  return (
+    <>
+      <TeacherModal
+        isVisibleModal={isVisibleModal}
+        closeModal={closeModal}
+        {...props}
+      />
       <TouchableOpacity
+        onPress={handlePressItem}
         style={{
           backgroundColor: palette['gray-200'],
           borderRadius: 8,
@@ -61,6 +75,6 @@ export const TeacherItem = memo<TeacherItemProps>(
           </Column>
         </Columns>
       </TouchableOpacity>
-    );
-  },
-);
+    </>
+  );
+});
