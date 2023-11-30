@@ -1,8 +1,8 @@
-import { Box, Column, Columns } from '@mobily/stacks';
+import { Box, Column, Columns, Stack } from '@mobily/stacks';
 import { memo, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import { Icon } from '@/atoms';
+import { Icon, Text } from '@/atoms';
 import { palette } from '@/utils';
 
 type TeacherItemProps = {
@@ -26,16 +26,31 @@ export const TeacherItem = memo<TeacherItemProps>(
           borderRadius: 8,
           padding: 12,
         }}>
-        <Columns>
+        <Columns alignY="center" space={12}>
           <Column width="fluid">
-            <Box
-              padding={18}
-              style={{
-                borderRadius: 8,
-                backgroundColor: palette['gray-400'],
-              }}>
-              <Icon name="person-outline" size={24} color={palette['white']} />
-            </Box>
+            <Stack horizontal align="center" space={12}>
+              <Box
+                padding={18}
+                style={{
+                  borderRadius: 8,
+                  backgroundColor: palette['gray-400'],
+                }}>
+                <Icon
+                  name="person-outline"
+                  size={24}
+                  color={palette['white']}
+                />
+              </Box>
+              <Text fontWeight="400" fontSize="16" color="gray-900">
+                {`강사 ${name}`}
+              </Text>
+              <Box direction="row" alignY="center">
+                <Icon name="star" size={16} color={palette['secondary']} />
+                <Text fontWeight="400" fontSize="14" color="secondary">
+                  {`${star}점`}
+                </Text>
+              </Box>
+            </Stack>
           </Column>
           <Column width="content">
             <Icon
