@@ -4,9 +4,12 @@ import { memo } from 'react';
 
 import { RootStackParamList } from '../root.navigator';
 
-import { FacilityReservationHeaderModule } from './modules';
+import {
+  FacilityReservationContentsModule,
+  FacilityReservationHeaderModule,
+} from './modules';
 
-import { BasicLayout } from '@/layouts';
+import { BasicLayout, ScrollView } from '@/layouts';
 
 type FacilityReservationScreenProps = {};
 
@@ -23,9 +26,12 @@ export type FacilityReservationScreenNavigationRouteProps = RouteProp<
 export const FacilityReservationScreen = memo<FacilityReservationScreenProps>(
   () => {
     return (
-      <BasicLayout>
-        <FacilityReservationHeaderModule />
-      </BasicLayout>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <BasicLayout>
+          <FacilityReservationHeaderModule />
+          <FacilityReservationContentsModule />
+        </BasicLayout>
+      </ScrollView>
     );
   },
 );
